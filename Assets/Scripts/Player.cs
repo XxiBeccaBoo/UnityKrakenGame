@@ -6,6 +6,9 @@ public class Player : MonoBehaviour
 {
     public int level = 3;
     public int health = 40;
+
+    [SerializeField] public LevelText _lt;
+    [SerializeField] public HealthText _ht;
     public void SavePlayer()
     {
         SaveSystem.SavePlayer(this);
@@ -15,6 +18,9 @@ public class Player : MonoBehaviour
         PlayerData data = SaveSystem.LoadPlayer();
         level = data.level;
         health = data.health;
+
+        _lt.setLevel(level);
+        _ht.setHealth(health);
     }
 
 
@@ -23,6 +29,7 @@ public class Player : MonoBehaviour
     public void ChangeLevel (int amount)
     {
         level += amount;
+        //Debug.Log("Player Level has increased to " + level +"!");
     }
     public void ChangeHealth(int amount)
     {
